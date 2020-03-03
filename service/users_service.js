@@ -14,8 +14,13 @@ module.exports = (usersRepository) => {
     getFriends: (userId,city) => {
       return usersRepository.getFriends(userId,city);
     },
+
     getFriendsActivities: (userId,friendId,city) => {
       return usersRepository.getFriendsActivities(userId,friendId,city);
+    },
+
+    postUser: (userInfo) => {
+      return usersRepository.postUser(userInfo)
     }
   }
 }

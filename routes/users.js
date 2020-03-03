@@ -71,7 +71,7 @@ module.exports = (userService) => {
       const [user] = await Promise.all([
         await userService.getUserByEmail(userInput)
       ]);
-      console.log(password)
+      // console.log(password)
       if (user) {
         if (user.password === password) {
           // res.cookie('name', `${user.first_name}`)
@@ -91,5 +91,32 @@ module.exports = (userService) => {
       console.log(error)
     }
   })
+
+  router.post("/signup", async (req, res) => {
+    const userInput = req.body;
+    console.log(userInput);
+    try {
+      const [user] = await Promise.all([
+        await userService.getUserByEmail(userInput)
+      ])
+      if (user) {
+        res.send('EMAIL ADDRESS ALREADY IN USE')
+      } else {
+        await userService.postUser(userInput)
+        const [userInfoBackFromDb] = await Promise.all([
+          await userService.getUserByEmail(userInput)
+        ])
+        res.cookie('user', JSON.stringify({
+          name: userInfoBackFromDb.first_name,
+          id: userInfoBackFromDb.id
+        }))
+        res.send({ userInfoBackFromDb })
+      }
+    } 
+    catch (error) {
+      console.log(error)
+    }
+  })
+
   return router;
 };

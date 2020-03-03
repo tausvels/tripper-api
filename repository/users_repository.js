@@ -43,7 +43,16 @@ module.exports = (db) => {
         WHERE friends.user_id = ${userId} AND friend_id = ${friendId} AND LOWER(destinations.city) = '${city}';
       `
       return db.query(qs)
+    },
+    postUser: (userInfo) => {
+      const first_name = userInfo.first_name;
+      const last_name = userInfo.last_name;
+      const email = userInfo.email;
+      const pw = userInfo.password;
+      const qs = `
+        INSERT INTO users (first_name, last_name, email, password) VALUES ('${first_name}', '${last_name}', '${email}', '${pw}')
+      `
+      return db.query(qs)
     }
-
   }
 }
