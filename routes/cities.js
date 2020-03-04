@@ -7,7 +7,6 @@ module.exports = (citiesService) => {
   router.get("/:input", async (req, res) => {
     let userInput = req.params.input
     console.log("userinput: ", userInput);
-    console.log("changed!")
     try {
       const [cities, image_url] = await Promise.all([
         // await citiesService.getAllCities()

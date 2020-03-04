@@ -95,7 +95,7 @@ app.use("/itineraries", itineraryRoutes(itineraryService));
 // Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
   // res.render("index");
-  res.send('Hello')
+  res.send('Am I there?')
 });
 app.get("/logout", (req, res) => {
   res.clearCookie('user')
