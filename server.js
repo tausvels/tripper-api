@@ -98,8 +98,11 @@ app.get("/", (req, res) => {
   res.send('Am I there?')
 });
 app.get("/logout", (req, res) => {
+
   res.clearCookie('user')
+  res.send('Am I there?asdasdasdasdasdasdasdasdasda')
   res.end()
+
 })
 
 app.listen(PORT, () => {
